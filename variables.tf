@@ -12,7 +12,7 @@ variable "ssh_private_key_file" {
 
 variable "provisioner_inline" { 
   description = " A list of command strings. They are executed in the order they are provided. "
-  default     = [] 
+  default     = null
 }
 
 variable "provisioner_script" {
@@ -22,7 +22,7 @@ variable "provisioner_script" {
 
 variable "provisioner_scripts" {
   description = "This is a list of paths (relative or absolute) to local scripts that will be copied to the remote resource and then executed. They are executed in the order they are provided. This cannot be provided with inline or script."
-  default = []
+  default = null
 }
 
 variable "provisioner_connection_type" { 
