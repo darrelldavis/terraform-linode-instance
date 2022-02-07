@@ -1,8 +1,38 @@
 # See https://www.linode.com/docs/api/linode-instances/#linode-create and https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance
 
-variable "ssh_key_file" {
+variable "ssh_public_key_file" {
   description = "File containing your SSH Public Key Fingerprint." 
   default     = "~/.ssh/id_rsa.pub"
+}
+
+variable "ssh_private_key_file" {
+  description = "File containing your SSH Private Key" 
+  default     = "~/.ssh/id_rsa"
+}
+
+variable "provisioner_inline" { 
+  description = " A list of command strings. They are executed in the order they are provided. "
+  default     = [] 
+}
+
+variable "provisioner_script" {
+  description = "This is a path (relative or absolute) to a local script that will be copied to the remote resource and then executed. This cannot be provided with inline or scripts."
+  default = null
+}
+
+variable "provisioner_scripts" {
+  description = "This is a list of paths (relative or absolute) to local scripts that will be copied to the remote resource and then executed. They are executed in the order they are provided. This cannot be provided with inline or script."
+  default = []
+}
+
+variable "provisioner_connection_type" { 
+  description = "The connection type. Valid values are ssh and winrm." 
+  default     = "ssh" 
+}
+
+variable "provisioner_connection_user" { 
+  description = "The user to use for the connection"
+  default = "root" 
 }
 
 variable "region" {
@@ -141,4 +171,10 @@ variable "timeouts_block" {
   description = "See documentation: https://registry.terraform.io/providers/linode/linode/latest/docs/resources/instance#timeouts"
   type        = list(any)
   default     = []
+}
+
+variable "provisioner" {
+  description = "Optional provisioner"
+  type        = string
+  default     = ""
 }

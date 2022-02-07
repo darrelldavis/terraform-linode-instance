@@ -1,3 +1,13 @@
+output "id" { 
+  description = "Linode id"
+  value       = linode_instance.this.id
+}
+
+output "label" { 
+  description = "Linode label"
+  value       = linode_instance.this.label
+}
+
 output "status" {
   description = "The status of the instance, indicating the current readiness state."
   value       = linode_instance.this.status
@@ -20,15 +30,15 @@ output "ipv6" {
 
 output "ipv4" {
   description = "This Linode's IPv4 Addresses."
-  value       = linode_instance.this.ipv4
+  value       = tolist(linode_instance.this.ipv4)
 }
 
 output "specs" {
   description = "Specs"
-  value       = linode_instance.this.specs.*
+  value       = tolist(linode_instance.this.specs.*)
 }
 
 output "backups" {
   description = "Information about this Linode's backups status"
-  value       = linode_instance.this.backups
+  value       = tolist(linode_instance.this.backups)
 }
